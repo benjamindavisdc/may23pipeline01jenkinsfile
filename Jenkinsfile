@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git clone 'https://github.com/benjamindavisdc/may23pipeline01.git' temp_repo
+                script {
+                    git clone 'https://github.com/benjamindavisdc/may23pipeline01.git' temp_repo
+                }
             }
         }
         
