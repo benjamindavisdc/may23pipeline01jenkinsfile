@@ -10,10 +10,12 @@ pipeline {
         
         stage('Copy Files') {
             steps {
-                sh '''
-                //Html site, doesn't need any packaging
-                docker cp temp_repo/. my-apache-container:/var/www/html/
-                '''
+                script {
+                    sh '''
+                    //Html site, doesn't need any packaging
+                    docker cp temp_repo/. my-apache-container:/var/www/html/
+                    '''
+                }
             }
         }
         
