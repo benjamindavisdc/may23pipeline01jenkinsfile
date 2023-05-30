@@ -4,14 +4,16 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/benjamindavisdc/may23pipeline01'
+                git clone 'https://github.com/benjamindavisdc/may23pipeline01.git' temp_repo
             }
         }
         
         stage('Copy Files') {
             steps {
+                sh '''
                 //Html site, doesn't need any packaging
-                sh 'cp "/tmp/repository/html portfolio template.html" /var/www/html/index.html'
+                docker cp temp_repo/. my-apache-container:/var/www/html/
+                '''
             }
         }
         
