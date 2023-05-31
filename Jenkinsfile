@@ -1,13 +1,14 @@
 pipeline {
     agent any
-    
     stages {
-        stage('Clone Repository') {
+        stage("Clone Git Repository") {
             steps {
-                git(
-                    url: 'https://github.com/benjamindavisdc/may23pipeline01.git',
-                    branch: "main"
-                )
+                dir('temp_repo') {
+                    git(
+                        url: "https://github.com/benjamindavisdc/may23pipeline01.git",
+                        branch: "main"
+                    )
+                }
             }
         }
         
@@ -15,7 +16,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    //Html site, doesn't need any packaging
+                    # Html site, doesn't need any packaging
                     docker cp temp_repo/. my-apache-container:/var/www/html/
                     '''
                 }
