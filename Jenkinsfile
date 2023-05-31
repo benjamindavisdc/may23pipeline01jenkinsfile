@@ -23,7 +23,7 @@ pipeline {
         
         stage('Clean Up') {
             steps {
-                sh 'rm -rf /tmp/repository'
+                sh 'rm -rf temp_repo'
             }
         }
     }
