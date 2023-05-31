@@ -4,22 +4,26 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/benjamindavisdc/may23pipeline01.git'
+                
+                    git 'https://github.com/benjamindavisdc/may23pipeline01.git' temp_repo
+                
             }
         }
         
         stage('Copy Files') {
             steps {
-                sh '''
-                # Html site, doesn't need any packaging
-                docker cp . my-apache-container:/var/www/html/
-                '''
+                script {
+                    sh '''
+                    //Html site, doesn't need any packaging
+                    docker cp temp_repo/. my-apache-container:/var/www/html/
+                    '''
+                }
             }
         }
         
         stage('Clean Up') {
             steps {
-                sh 'rm -rf .git'
+                sh 'rm -rf temp_repo'
             }
         }
     }
