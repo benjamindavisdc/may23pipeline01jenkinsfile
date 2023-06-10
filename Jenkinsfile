@@ -12,11 +12,22 @@ pipeline {
             }
         }
         
+        stage('Clean Web Directory') {
+            steps {
+                script {
+                    sh '''
+                    # Remove all files from the Apache web directory
+                    docker exec my-apache-container rm -rf /var/www/html/*
+                    '''
+                }
+            }
+        }
+        
         stage('Copy Files') {
             steps {
                 script {
                     sh '''
-                    # Html site, doesn't need any packaging
+                    # Copy new files to the Apache web directory
                     docker cp temp_repo/. my-apache-container:/var/www/html/
                     '''
                 }
