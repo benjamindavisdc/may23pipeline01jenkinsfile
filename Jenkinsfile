@@ -17,7 +17,7 @@ pipeline {
                 script {
                     sh '''
                     # Remove all files from the Apache web directory
-                    docker exec my-apache-container rm -rf /var/www/html/*
+                    docker exec my-apache-container-flask rm -rf /var/www/html/*
                     '''
                 }
             }
