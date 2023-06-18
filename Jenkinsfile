@@ -17,7 +17,7 @@ pipeline {
                 script {
                     sh '''
                     # Remove all files from the Apache web directory
-                    sudo rm -rf /var/www/html/*
+                    sh rm -rf /var/www/html/*
                     '''
                 }
             }
@@ -25,12 +25,8 @@ pipeline {
         
         stage('Copy Files') {
             steps {
-                script {
-                    sh '''
-                    # Copy new files to the Apache web directory
-                    sudo cp -r temp_repo/. /var/www/html/
-                    '''
-                }
+                //Html site, doesn't need any packaging
+                sh 'cp "/tmp/repository/html portfolio template.html" /var/www/html/index.html'
             }
         }
         
@@ -41,3 +37,7 @@ pipeline {
         }
     }
 }
+
+
+
+
