@@ -15,8 +15,7 @@ pipeline {
         
         stage('Copy Files') {
             steps {
-                //Html site, doesn't need any packaging
-                sh 'cp "/tmp/repository/*" /var/www/html/index.html'
+                sh 'cp temp_repo/. /var/www/html/
             }
         }
         
