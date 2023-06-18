@@ -15,7 +15,7 @@ pipeline {
         
         stage('Copy Files') {
             steps {
-                sh 'cp temp_repo/. /var/www/html/
+                sh 'cp -R temp_repo/. /var/www/html/'
             }
         }
         
