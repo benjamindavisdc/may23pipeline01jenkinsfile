@@ -1,36 +1,23 @@
 pipeline {
     agent any
+    
     stages {
-        stage("Clone Git Repository") {
+        stage('Clone Repository') {
             steps {
-                dir('temp_repo') {
-                    git(
-                        url: "https://github.com/benjamindavisdc/may23pipeline01.git",
-                        branch: "main"
-                    )
-                }
+                git 'https://github.com/benjamindavisdc/may23pipeline01'
             }
         }
-
-        stage('Clean Web Directory') {
-            steps {
-                script {
-                    sh "sudo rm -rf /var/www/html/*"
-                }
-            }
-        }
-
+        
         stage('Copy Files') {
             steps {
-                script {
-                    sh "sudo cp -r temp_repo/. /var/www/html/"
-                }
+                //Html site, doesn't need any packaging
+                sh 'cp "/tmp/repository/*" /var/www/html/index.html'
             }
         }
-
+        
         stage('Clean Up') {
             steps {
-                sh 'rm -rf temp_repo'
+                sh 'rm -rf /tmp/repository'
             }
         }
     }
