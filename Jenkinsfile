@@ -11,25 +11,23 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Clean Web Directory') {
             steps {
                 script {
-                    sh '''
-                    # Remove all files from the Apache web directory
-                    sh rm -rf /var/www/html/*
-                    '''
+                    sh "sudo rm -rf /var/www/html/*"
                 }
             }
         }
-        
+
         stage('Copy Files') {
             steps {
-                //Html site, doesn't need any packaging
-                sh 'cp "/tmp/repository/html portfolio template.html" /var/www/html/index.html'
+                script {
+                    sh "sudo cp -r temp_repo/. /var/www/html/"
+                }
             }
         }
-        
+
         stage('Clean Up') {
             steps {
                 sh 'rm -rf temp_repo'
@@ -37,7 +35,3 @@ pipeline {
         }
     }
 }
-
-
-
-
