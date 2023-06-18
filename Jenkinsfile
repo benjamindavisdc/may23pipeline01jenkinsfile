@@ -4,7 +4,12 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/benjamindavisdc/may23pipeline01'
+                dir('temp_repo') {
+                    git(
+                        url: "https://github.com/benjamindavisdc/may23pipeline01.git",
+                        branch: "main"
+                    )
+                }
             }
         }
         
