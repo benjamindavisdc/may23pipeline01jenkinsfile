@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     stages { 
-        stage('Clean Up') {
+        stage('Clean Up1') {
             steps {
                 sh 'rm -rf temp_repo/'
             }
@@ -26,7 +26,7 @@ pipeline {
             }
         }
         
-        stage('Clean Up') {
+        stage('Clean Up2') {
             steps {
                 sh 'rm -rf temp_repo/'
             }
