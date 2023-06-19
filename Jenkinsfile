@@ -1,7 +1,13 @@
 pipeline {
     agent any
     
-    stages {
+    stages { 
+        stage('Clean Up') {
+            steps {
+                sh 'rm -rf temp_repo/'
+            }
+        }
+        
         stage('Clone Repository') {
             steps {
                 dir('temp_repo') {
@@ -22,7 +28,7 @@ pipeline {
         
         stage('Clean Up') {
             steps {
-                sh 'rm -rf /tmp/repository'
+                sh 'rm -rf temp_repo/'
             }
         }
     }
