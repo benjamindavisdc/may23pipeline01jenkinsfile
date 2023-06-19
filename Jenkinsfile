@@ -15,7 +15,8 @@ pipeline {
         
         stage('Copy Files') {
             steps {
-                sh 'cp -R temp_repo/. /var/www/html/'
+                sh 'cp -R temp_repo/. /var/www/html/apache-flask/'
+                sh '/var/www/html/apache-flask/apache-flask.conf /etc/httpd/conf.d/apache-flask.conf'
             }
         }
         
